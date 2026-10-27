@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f4f4f4;
+}
+
+.container{
+    margin-top:30px;
+}
+
+.card{
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+table{
+    background:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="text-center mb-4">
+ADMIN DASHBOARD
+</h1>
+
+<div class="card shadow">
+
+<h3>Add Product</h3>
+
+<input type="text"
+id="name"
+class="form-control mb-2"
+placeholder="Product Name">
+
+<input type="text"
+id="category"
+class="form-control mb-2"
+placeholder="Category">
+
+<input type="number"
+id="price"
+class="form-control mb-2"
+placeholder="Price">
+
+<input type="text"
+id="image"
+class="form-control mb-2"
+placeholder="Image URL">
+
+<textarea
+id="description"
+class="form-control mb-2"
+placeholder="Description"></textarea>
+
+<button
+class="btn btn-success"
+onclick="addProduct()">
+Add Product
+</button>
+
+</div>
+
+<div class="card shadow">
+
+<h3>All Products</h3>
+
+<button
+class="btn btn-primary mb-3"
+onclick="loadProducts()">
+Refresh
+</button>
+
+<table class="table table-bordered">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Category</th>
+<th>Price</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="productTable">
+</tbody>
+
+</table>
+
+<br>
+
+<a href="/logout" class="btn btn-danger">
+Logout
+</a>
+
+<button
+class="btn btn-secondary"
+onclick="history.back()">
+← Back
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+loadProducts();
+
+function addProduct(){
+
+    const product = {
+
+        name: document.getElementById("name").value,
+
+        category: document.getElementById("category").value,
+
+        price: parseFloat(
+            document.getElementById("price").value
+        ),
+
+        image: document.getElementById("image").value,
+
+        description:
+        document.getElementById("description").value
+
+    };
+
+    fetch(
+        "http://localhost:8081/product/add",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(product)
+        }
+    )
+
+    .then(response=>response.json())
+
+    .then(data=>{
+
+        alert("Product Added Successfully");
+
+        document.getElementById("name").value="";
+        document.getElementById("category").value="";
+        document.getElementById("price").value="";
+        document.getElementById("image").value="";
+        document.getElementById("description").value="";
+
+        loadProducts();
+
+    })
+
+    .catch(error=>{
+
+        console.error(error);
+
+        alert("Failed To Add Product");
+
+    });
+
+}
+
+function loadProducts(){
+
+    fetch("http://localhost:8081/product/all")
+
+    .then(response=>response.json())
+
+    .then(products=>{
+
+        let html="";
+
+        products.forEach(product=>{
+
+            html += `
+
+            <tr>
+
+                <td>${product.id}</td>
+
+                <td>${product.name}</td>
+
+                <td>${product.category}</td>
+
+                <td>₹${product.price}</td>
+
+                <td>
+
+                    <button
+                    class="btn btn-warning btn-sm"
+                    onclick="editProduct(${product.id})">
+
+                    Edit
+
+                    </button>
+
+                    <button
+                    class="btn btn-danger btn-sm"
+                    onclick="deleteProduct(${product.id})">
+
+                    Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+        document.getElementById(
+            "productTable"
+        ).innerHTML = html;
+
+    });
+
+}
+
+function editProduct(id){
+
+    window.location.href =
+    "/admin/edit/" + id;
+
+}
+
+function deleteProduct(id){
+
+    if(confirm("Delete this product ?")){
+
+        fetch(
+            "http://localhost:8081/product/" + id,
+            {
+                method:"DELETE"
+            }
+        )
+
+        .then(response=>response.text())
+
+        .then(data=>{
+
+            alert(data);
+
+            loadProducts();
+
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

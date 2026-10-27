@@ -1,0 +1,20 @@
+<form action="/admin/update"
+      method="post">
+
+<input type="hidden"
+       name="id"
+       th:value="${product.id}">
+
+<input type="text"
+       name="name"
+       th:value="${product.name}">
+
+<input type="number"
+       name="price"
+       th:value="${product.price}">
+
+<button type="submit">
+Update
+</button>
+
+</form>

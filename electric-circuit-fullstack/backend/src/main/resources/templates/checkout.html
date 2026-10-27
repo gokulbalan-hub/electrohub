@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout - ElectroHub</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f5f7fa;
+}
+
+.checkout-card{
+background:white;
+border-radius:20px;
+padding:25px;
+box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+}
+
+.order-summary{
+background:#111827;
+color:white;
+border-radius:20px;
+padding:25px;
+}
+
+</style>
+
+</head>
+
+<body>
+<button onclick="history.back()">
+    ← Back
+</button>
+<nav class="navbar navbar-dark bg-dark">
+
+<div class="container">
+
+<a class="navbar-brand" href="/">
+⚡ ElectroHub Checkout
+</a>
+
+</div>
+
+</nav>
+
+<div class="container mt-5">
+
+<div class="row">
+
+<div class="col-md-8">
+
+<div class="checkout-card">
+
+<h3>Delivery Address</h3>
+<div id="addressBox"
+     style="display:none;">
+
+<input type="text"
+       name="doorNo"
+       placeholder="Door No">
+
+<input type="text"
+       name="street"
+       placeholder="Street">
+
+<input type="text"
+       name="city"
+       placeholder="City">
+
+<input type="text"
+       name="pincode"
+       placeholder="Pincode">
+
+</div>
+
+<hr>
+
+<input
+id="name"
+type="text"
+class="form-control mb-3"
+placeholder="Full Name">
+
+<input
+id="mobile"
+type="text"
+class="form-control mb-3"
+placeholder="Mobile Number">
+
+<textarea
+id="address"
+class="form-control mb-3"
+rows="4"
+placeholder="Full Address">
+</textarea>
+
+<input
+id="city"
+type="text"
+class="form-control mb-3"
+placeholder="City">
+
+<input
+id="pincode"
+type="text"
+class="form-control mb-3"
+placeholder="Pincode">
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="order-summary">
+
+<h3>Cash On Delivery</h3>
+
+<hr>
+
+<p>
+Your order will be delivered to the given address.
+</p>
+
+<hr>
+
+<h4>
+Payment Mode : COD
+</h4>
+<a href="/logout">Logout</a>
+<button
+onclick="placeOrder()"
+class="btn btn-warning w-100 mt-3">
+
+Place Order
+
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function placeOrder(){
+
+	let name =
+	document.getElementById("name").value;
+
+	let mobile =
+	document.getElementById("mobile").value;
+
+	let address =
+	document.getElementById("address").value;
+
+	let city =
+	document.getElementById("city").value;
+
+	let pincode =
+	document.getElementById("pincode").value;
+
+	if(
+	name.trim()==="" ||
+	mobile.trim()==="" ||
+	address.trim()==="" ||
+	city.trim()==="" ||
+	pincode.trim()===""
+	){
+
+	alert(
+	"Please Fill Delivery Address"
+	);
+
+	return;
+
+	}
+
+	let userId =
+	localStorage.getItem("userId");
+
+	const order = {
+
+	userId: parseInt(userId),
+
+	totalAmount: 0,
+
+	orderStatus: "PLACED"
+
+	};
+
+	fetch(
+	"http://localhost:8081/orders/place",
+	{
+
+	method:"POST",
+
+	headers:{
+	"Content-Type":"application/json"
+	},
+
+	body:JSON.stringify(order)
+
+	})
+
+	.then(response => response.json())
+
+	.then(data => {
+
+	window.location.href =
+	"/order-success";
+
+	})
+
+	.catch(error => {
+
+	console.error(error);
+
+	alert("Order Failed");
+
+	});
+
+	}
+	
+
+const order = {
+
+userId: parseInt(userId),
+
+totalAmount: 0,
+
+orderStatus: "PLACED"
+
+};
+
+fetch(
+"http://localhost:8081/orders/place",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(order)
+
+})
+
+.then(response => response.json())
+
+.then(data => {
+
+alert(
+"Order Placed Successfully"
+);
+
+window.location.href =
+"/order-success";
+
+})
+
+.catch(error => {
+
+console.error(error);
+
+alert("Order Failed");
+
+});
+function showAddress(){
+
+	document.getElementById(
+	"addressBox"
+	).style.display="block";
+
+	}
+
+
+
+</script>
+
+</body>
+
+</html>

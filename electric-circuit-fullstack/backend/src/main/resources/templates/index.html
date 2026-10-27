@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ElectroHub | Electronics Store</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f5f7fa;
+    overflow-x:hidden;
+}
+
+.navbar{
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+
+.hero{
+    height:90vh;
+    background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url('https://images.unsplash.com/photo-1518770660439-4636190af475');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-size:5rem;
+    font-weight:bold;
+}
+
+.hero p{
+    font-size:1.5rem;
+}
+
+.card{
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0px 10px 25px rgba(0,0,0,.2);
+}
+
+.stats{
+    background:#111827;
+    color:white;
+    padding:60px 0;
+}
+
+.footer{
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+</style>
+
+</head>
+
+<body>
+<button onclick="history.back()">
+    ← Back
+</button>
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="/">
+⚡ ElectroHub
+</a>
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="/">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/products">Products</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/cart">Cart</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/profile">Profile</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/about-us">About</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/contact-us">Contact</a>
+</li>
+
+<li class="nav-item">
+<a class="btn btn-warning ms-2" href="/login">
+Login
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+<div>
+
+<h1>⚡ ElectroHub</h1>
+
+<p>
+World of Electronics at Your Fingertips
+</p>
+
+<a href="/products"
+class="btn btn-warning btn-lg mt-3">
+
+Shop Now
+
+</a>
+
+</div>
+
+</section>
+
+<!-- Featured Products -->
+
+<div class="container mt-5">
+
+<h2 class="text-center mb-5">
+🔥 Featured Products
+</h2>
+
+<div class="row">
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow">
+
+<img
+src="https://m.media-amazon.com/images/I/61aZxD8x1SL.jpg"
+class="card-img-top">
+
+<div class="card-body text-center">
+
+<h4>Arduino Uno</h4>
+
+<p>Development Board</p>
+
+<h5>₹499</h5>
+
+<a href="/products"
+class="btn btn-primary">
+
+View Product
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow">
+
+<img
+src="https://m.media-amazon.com/images/I/71LJJrKbezL.jpg"
+class="card-img-top">
+
+<div class="card-body text-center">
+
+<h4>ESP32</h4>
+
+<p>WiFi + Bluetooth Board</p>
+
+<h5>₹799</h5>
+
+<a href="/products"
+class="btn btn-success">
+
+View Product
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow">
+
+<img
+src="https://m.media-amazon.com/images/I/71x3+0M2K-L.jpg"
+class="card-img-top">
+
+<div class="card-body text-center">
+
+<h4>Raspberry Pi</h4>
+
+<p>Mini Computer</p>
+
+<h5>₹4500</h5>
+
+<a href="/products"
+class="btn btn-danger">
+
+View Product
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Why Choose Us -->
+
+<div class="container mt-5">
+
+<h2 class="text-center mb-4">
+Why Choose ElectroHub?
+</h2>
+
+<div class="row text-center">
+
+<div class="col-md-3">
+<h3>⚡</h3>
+<h5>Latest Components</h5>
+</div>
+
+<div class="col-md-3">
+<h3>🚚</h3>
+<h5>Fast Delivery</h5>
+</div>
+
+<div class="col-md-3">
+<h3>🔒</h3>
+<h5>Secure Payment</h5>
+</div>
+
+<div class="col-md-3">
+<h3>📞</h3>
+<h5>24/7 Support</h5>
+</div>
+
+</div>
+
+</div>
+
+<!-- Stats -->
+
+<section class="stats mt-5">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+<h1>1000+</h1>
+<p>Products</p>
+</div>
+
+<div class="col-md-3">
+<h1>5000+</h1>
+<p>Customers</p>
+</div>
+
+<div class="col-md-3">
+<h1>250+</h1>
+<p>Brands</p>
+</div>
+
+<div class="col-md-3">
+<h1>24/7</h1>
+<p>Support</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer class="footer">
+
+<h4>⚡ ElectroHub</h4>
+
+<p>
+Electronics Store Built Using Spring Boot + MySQL
+</p>
+
+<p>
+© 2026 All Rights Reserved
+</p>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+.mainContent{
+    margin-left:250px;
+    min-height:100vh;
+    width:calc(100% - 250px);
+    padding:30px;
+    background:#f8f9fa;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        width:70px;
+    }
+
+    .mainContent{
+        margin-left:70px;
+        width:calc(100% - 70px);
+        padding:20px;
+    }
+
+}
